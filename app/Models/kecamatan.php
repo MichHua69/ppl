@@ -19,6 +19,6 @@ class kecamatan extends Model
 
     public function wilayah()
     {
-        return $this->hasOne(Wilayah::class, 'id_kecamatan');
+        return $this->hasOne(wilayah::class, 'id_kecamatan');
     }
 }

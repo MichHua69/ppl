@@ -16,4 +16,19 @@ class alamat extends Model
     ];
 
     protected $table = 'alamat';
+
+    public function wilayah()
+    {
+        return $this->belongsTo(wilayah::class, 'id_wilayah', 'id');
+    }
+
+    public function puskeswan()
+    {
+        return $this->hasOne(puskeswan::class, 'id_alamat', 'id');
+    }
+
+    public function peternak()
+    {
+        return $this->hasOne(peternak::class, 'id_alamat', 'id');
+    }
 }

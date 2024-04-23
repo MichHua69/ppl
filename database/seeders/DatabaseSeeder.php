@@ -27,6 +27,13 @@ class DatabaseSeeder extends Seeder
             KecamatanSeeder::class,
             WilayahSeeder::class,
             AlamatSeeder::class,
+            RoleSeeder::class,
+            PuskeswanSeeder::class,
+            PenggunaSeeder::class,
+            dinasPeternakanSeeder::class,
+            DokterSeeder::class,
+            PeternakSeeder::class
+
         ]);
     }
 }

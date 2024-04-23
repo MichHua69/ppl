@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\dokterhewan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,10 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wilayah', function (Blueprint $table) {
+        Schema::create('puskeswan', function (Blueprint $table) {
             $table->id('id')->unique();
-            $table->foreignId('id_kecamatan')->constrained('kecamatan');
-            $table->foreignId('id_desa')->constrained('desa');
+            $table->string('puskeswan');
+            $table->string('telepon');
+            $table->foreignId('id_alamat')->constrained('alamat');
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wilayah');
+        Schema::dropIfExists('puskeswan');
     }
 };

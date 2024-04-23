@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class desa extends Model
+class role extends Model
 {
     use HasFactory;
 
@@ -15,10 +15,10 @@ class desa extends Model
         'id'
     ];
 
-    protected $table = 'desa';
+    protected $table = 'role';
 
-    public function wilayah()
+    public function pengguna()
     {
-        return $this->hasOne(wilayah::class, 'id_desa');
+        return $this->hasMany(pengguna::class, 'id_role', 'id');
     }
 }

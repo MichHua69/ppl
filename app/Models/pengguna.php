@@ -8,20 +8,26 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class pengguna extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    protected $guarded = [
+        'id'
+    ];
+
+    protected $table = 'pengguna';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    // ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +47,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(role::class, 'id_role', 'id');
+    }
+
+    public function dokterhewan()
+    {
+        return $this->hasOne(dokterhewan::class, 'id_pengguna', 'id');
+    }
+
+    public function peternak()
+    {
+        return $this->hasOne(peternak::class, 'id_pengguna', 'id');
+    }
+
+    public function dinaspeternakan()
+    {
+        return $this->hasOne(dinaspeternakan::class, 'id_pengguna', 'id');
+    }
 }
