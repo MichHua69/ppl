@@ -8,7 +8,14 @@ export default {
     './node_modules/preline/dist/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors : {
+        'primary' : '#538D22' ,
+        'primary-light' : '#69CF3A',
+        'secondary' : '#FFFFFF',
+        'danger' : '#FF204E',
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin'),
