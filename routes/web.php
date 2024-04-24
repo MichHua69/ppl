@@ -2,7 +2,10 @@
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DinasController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DokterController;
+use App\Http\Controllers\PeternakController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -21,4 +24,19 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+
+Route::middleware(['role:1'])->group(function () {
+    Route::get('/dinas/dashboard', [DinasController::class, 'index'])->name('dinas.dashboard');
+});
+
+Route::middleware(['role:2'])->group(function () {
+    Route::get('/dokter/dashboard', [DokterController::class, 'index'])->name('dokter.dashboard');
+});
+
+Route::middleware(['role:3'])->group(function () {
+    Route::get('/peternak/dashboard', [PeternakController::class, 'index'])->name('peternak.dashboard');
+    Route::get('/peternak/profil', [PeternakController::class, 'profil'])->name('peternak.profil');
+});
