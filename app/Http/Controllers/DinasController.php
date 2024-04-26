@@ -13,9 +13,20 @@ class DinasController extends Controller
         $photo= $user->avatar;
         if ($photo != null) {
             $photo = 'storage/'.$user->avatar;
-            return view('dokter.dashboard', compact('user','photo'));
+            return view('dinas.dashboard', compact('user','photo'));
         } 
         $photo = '/images/defaultprofile.png';
         return view('dinas.dashboard', compact('user','photo'));
+    }
+    
+    public function buatakun() {
+        $user = Auth::user();
+        $photo= $user->avatar;
+        if ($photo != null) {
+            $photo = 'storage/'.$user->avatar;
+            return view('dinas.dashboard', compact('user','photo'));
+        } 
+        $photo = '/images/defaultprofile.png';
+        return view ('dinas.buatakun', compact('user', 'photo') );
     }
 }

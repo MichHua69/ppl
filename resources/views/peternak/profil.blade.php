@@ -128,7 +128,7 @@
                                     <select
                                         class="hidden peer block w-full px-1 py-3 pl-4 border border-gray-300 rounded-md shadow-sm focus:outline:none focus:ring-primary focus:border-primary @error('desa') border-red-500 @enderror"
                                         name="desa" id="desa">
-                                        <option selected hidden value="{{ $aktor->alamat->wilayah->desa->id }}">{{$aktor->alamat->wilayah->desa->desa}}</option>
+                                        <option selected hidden value="{{ $aktor->alamat->wilayah->kecamatan->id }}">{{$aktor->alamat->wilayah->desa->desa}}</option>
                                         @foreach ($desa as $item)
                                             <option value="{{ $item->id }}">{{ $item->desa }}</option>
                                         @endforeach
@@ -240,7 +240,7 @@
                                 data-twe-ripple-init
                                 data-twe-ripple-color="light">
                                 Batal
-                            </button> 
+                                </button> 
                                 <button type="submit"
                                 class=" hidden inline-block w-full rounded rounded-full px-6 py-2 text-xl font-bold uppercase leading-normal text-white shadow-dark-3 transition duration-150 ease-in-out bg-primary hover:bg-primary-light"
                                 type="submit"
