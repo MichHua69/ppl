@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('peternak', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('nama');
-            $table->string('nik');
+            $table->bigInteger('nik');
             $table->string('telepon');
             $table->foreignId('id_alamat')->constrained('alamat');
             $table->foreignId('id_pengguna')->constrained('pengguna');

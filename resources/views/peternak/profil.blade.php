@@ -90,8 +90,7 @@
                                     <input type="text" name="alamat" id="alamat"
                                         placeholder="Masukkan Alamat"
                                         class="hidden peer block w-full p-3 pl-4 border border-gray-300 rounded-md shadow-sm focus:outline:none focus:ring-primary focus:border-primary @error('alamat') border-red-500 @enderror"
-                                        value="{{ $aktor->alamat->jalan }}"
-                                        autocomplete="alamat" />
+                                        value="{{ $aktor->alamat->jalan }}" autocomplete="alamat" />
     
                                     @error('alamat')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -106,22 +105,20 @@
                                     class="basis-9/12 flex justify-center gap-x-3 font-semibold">
                                     <p class="peer block w-full py-3 rounded-md" id="kecamatan-p">Kecamatan</p>
                                     <p class="peer block w-full py-3 rounded-md" id="desa-p">Desa</p>
-                                    <p class="peer block w-full py-3 rounded-md" id="dusun-p">Dusun</p>
                                 </div>
                                 <div
                                     class="basis-9/12 flex justify-center gap-x-3">
-                                    <p class="peer block w-full py-3 rounded-md" id="kecamatans-p">{{$kec->kecamatan}}</p>
-                                    <p class="peer block w-full py-3 rounded-md" id="desas-p">{{$des->desa}}</p>
-                                    <p class="peer block w-full py-3 rounded-md" id="dusuns-p">{{$dus->dusun}}</p>
+                                    <p class="peer block w-full py-3 rounded-md" id="kecamatans-p">{{$aktor->alamat->wilayah->kecamatan->kecamatan}}</p>
+                                    <p class="peer block w-full py-3 rounded-md" id="desas-p">{{$aktor->alamat->wilayah->desa->desa}}</p>
                                 </div>
                                 <div
                                     class="basis-9/12 flex justify-center gap-x-3">
                                     <select 
                                         class="hidden peer block w-full px-1 py-3 pl-4 border border-gray-300 rounded-md shadow-sm focus:outline:none focus:ring-primary focus:border-primary @error('kecamatan') border-red-500 @enderror"
                                         name="kecamatan" id="kecamatan">
-                                        <option selected disabled hidden value={{$aktor->alamat->jalan}}>Kecamatan</option>
+                                        <option selected hidden value="{{ $aktor->alamat->wilayah->kecamatan->id }}">{{$aktor->alamat->wilayah->kecamatan->kecamatan}}</option>
                                         @foreach ($kecamatan as $item)
-                                        <option value="{{ $item->id_kecamatan }}">{{ $item->kecamatan }}</option>
+                                        <option value="{{ $item->id }}">{{ $item->kecamatan }}</option>
                                         @endforeach
                                     </select>
                                     @error('kecamatan')
@@ -130,43 +127,45 @@
     
                                     <select
                                         class="hidden peer block w-full px-1 py-3 pl-4 border border-gray-300 rounded-md shadow-sm focus:outline:none focus:ring-primary focus:border-primary @error('desa') border-red-500 @enderror"
-                                        name="desa" id="desa" value="">
-                                        <option selected disabled hidden>Desa</option>
+                                        name="desa" id="desa">
+                                        <option selected hidden value="{{ $aktor->alamat->wilayah->desa->id }}">{{$aktor->alamat->wilayah->desa->desa}}</option>
                                         @foreach ($desa as $item)
-                                            <option value="{{ $item->id_desa }}">{{ $item->desa }}</option>
+                                            <option value="{{ $item->id }}">{{ $item->desa }}</option>
                                         @endforeach
                                     </select>
                                     @error('desa')
                                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                     @enderror
     
-                                    <select
-                                        class="hidden peer block w-full px-1 py-3 pl-4 border border-gray-300 rounded-md shadow-sm focus:outline:none focus:ring-primary focus:border-primary @error('dusun') border-red-500 @enderror"
-                                        name="dusun" id="dusun">
-                                        <option selected disabled hidden>Dusun</option>
-                                        @foreach ($dusun as $item)
-                                        <option value="{{ $item->id_dusun }}">{{ $item->dusun }}</option>
-                                        @endforeach
-                                    </select>
+                                </div>
+                            </div>
+    
+                            <div class="flex flex-col mb-8 w-full justify-between">
+                                <label class="basis-3/12 font-semibold" for="dusun">Dusun</label>
+                                <p class="peer block w-full py-3 rounded-md" id="dusun-p">{{$aktor->alamat->dusun}}</p>
+                                <div class="relative basis-9/12" data-twe-input-wrapper-init>
+                                    <input type="text" name="dusun" id="dusun" placeholder="Masukkan Dusun" class="hidden peer block w-full p-3 pl-4 border border-gray-300 rounded-md shadow-sm focus:outline:none focus:ring-primary focus:border-primary @error('dusun') border-red-500 @enderror"
+                                        value="{{$aktor->alamat->dusun}}" autocomplete="dusun"/>
                                     @error('dusun')
                                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
-    
                             <div class="flex flex-col mb-8 w-full justify-between">
                                 <label class="basis-3/12 font-semibold" for="nik">NIK</label>
                                 <p class="peer block w-full py-3 rounded-md" id="nik-p">{{$aktor->nik}}</p>
                                 <div class="relative basis-9/12" data-twe-input-wrapper-init>
                                     <input type="text" name="nik" id="nik" placeholder="Masukkan NIK" class="hidden peer block w-full p-3 pl-4 border border-gray-300 rounded-md shadow-sm focus:outline:none focus:ring-primary focus:border-primary @error('nik') border-red-500 @enderror"
                                         value="{{$aktor->nik}}" autocomplete="nik"/>
-    
                                     @error('nik')
                                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
     
+                            
+                        </div>
+                        <div class="flex flex-col px-7 py-5 basis-1/2">
                             <div class="flex flex-col mb-8 w-full justify-between">
                                 <label class="basis-3/12 font-semibold" for="telepon">No. Telepon</label>
                                 <p class="peer block w-full py-3 rounded-md" id="telepon-p">{{$aktor->telepon}}</p>
@@ -179,9 +178,6 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-    
-                        <div class="flex flex-col px-7 py-5 basis-1/2">
                             <div
                                 class="flex flex-col mb-8 w-full justify-between">
                                 <label class="basis-3/12 font-semibold" for="nama_pengguna">Nama Pengguna</label>
@@ -203,7 +199,9 @@
                             <div
                                 class="flex flex-col mb-8 w-full justify-between">
                                 <label class="basis-3/12 font-semibold" for="email">Email</label>
-                                <p class="peer block w-full py-3 rounded-md" id="email-p">{{{$aktor->Pengguna->email}}}</p>
+                                <p class="peer block w-full py-3 rounded-md" id="email-p">
+                                    {{{$aktor->Pengguna->email}}}
+                                </p>
                                 <div class="relative basis-9/12"
                                     data-twe-input-wrapper-init>
                                     <input type="email" name="email" id="email"
@@ -280,11 +278,12 @@
         // const dusunP = document.getElementById('dusun-p');
         const kecamatansP = document.getElementById('kecamatans-p');
         const desasP = document.getElementById('desas-p');
-        const dusunsP = document.getElementById('dusuns-p');
+        // const dusunsP = document.getElementById('dusuns-p');
         const kecamatanInput = document.getElementById('kecamatan');
         const desaInput = document.getElementById('desa');
-        const dusunInput = document.getElementById('dusun');
+        // const dusunInput = document.getElementById('dusun');
         const nikP = document.getElementById('nik-p');
+        const dusunP = document.getElementById('dusun-p');
         const teleponP = document.getElementById('telepon-p');
         const namaPenggunaP = document.getElementById('nama_pengguna-p');
         const passwordP = document.getElementById('password-p');
@@ -292,6 +291,7 @@
         const emailInput = document.getElementById('email');
         const alamatInput = document.getElementById('alamat');
         const nikInput = document.getElementById('nik');
+        const dusunInput = document.getElementById('dusun');
         const teleponInput = document.getElementById('telepon');
         const namaPenggunaInput = document.getElementById('nama_pengguna');
         const passwordInput = document.getElementById('password');
@@ -312,9 +312,9 @@
             // desaP.classList.add('hidden');
             desasP.classList.add('hidden');
             desaInput.classList.remove('hidden');
-            // dusunP.classList.add('hidden');
-            dusunsP.classList.add('hidden');
+            dusunP.classList.add('hidden');
             dusunInput.classList.remove('hidden');
+            // dusunsP.classList.add('hidden');
             //   nikP.classList.add('hidden');
             //   nikInput.classList.remove('hidden');
             teleponP.classList.add('hidden');
@@ -325,34 +325,34 @@
             passwordInput.classList.remove('hidden');
             editImageButton.classList.remove('hidden');
         });
-    cancelProfileButton.addEventListener('click', () => {
-        editImage.classList.add('hidden');
-        saveProfileButton.classList.add('hidden');
-        cancelProfileButton.classList.add('hidden');
-        namaP.classList.remove('hidden');
-        namaInput.classList.add('hidden');
-        emailP.classList.remove('hidden');
-        emailInput.classList.add('hidden');
-        alamatP.classList.remove('hidden');
-        alamatInput.classList.add('hidden');
-        // kecamatanP.classList.remove('hidden');
-        kecamatansP.classList.remove('hidden');
-        kecamatanInput.classList.add('hidden');
-        // desaP.classList.remove('hidden');
-        desasP.classList.remove('hidden');
-        desaInput.classList.add('hidden');
-        // dusunP.classList.remove('hidden');
-        dusunsP.classList.remove('hidden');
-        dusunInput.classList.add('hidden');
-        nikP.classList.remove('hidden');
-        nikInput.classList.add('hidden');
-        teleponP.classList.remove('hidden');
-        teleponInput.classList.add('hidden');
-        namaPenggunaP.classList.remove('hidden');
-        namaPenggunaInput.classList.add('hidden');
-        passwordP.classList.remove('hidden');
-        passwordInput.classList.add('hidden');
-        });
+        cancelProfileButton.addEventListener('click', () => {
+            editImage.classList.add('hidden');
+            saveProfileButton.classList.add('hidden');
+            cancelProfileButton.classList.add('hidden');
+            namaP.classList.remove('hidden');
+            namaInput.classList.add('hidden');
+            emailP.classList.remove('hidden');
+            emailInput.classList.add('hidden');
+            alamatP.classList.remove('hidden');
+            alamatInput.classList.add('hidden');
+            // kecamatanP.classList.remove('hidden');
+            kecamatansP.classList.remove('hidden');
+            kecamatanInput.classList.add('hidden');
+            // desaP.classList.remove('hidden');
+            desasP.classList.remove('hidden');
+            desaInput.classList.add('hidden');
+            // dusunP.classList.remove('hidden');
+            dusunP.classList.remove('hidden');
+            dusunInput.classList.add('hidden');
+            nikP.classList.remove('hidden');
+            nikInput.classList.add('hidden');
+            teleponP.classList.remove('hidden');
+            teleponInput.classList.add('hidden');
+            namaPenggunaP.classList.remove('hidden');
+            namaPenggunaInput.classList.add('hidden');
+            passwordP.classList.remove('hidden');
+            passwordInput.classList.add('hidden');
+            });
 
         const cameraButton = document.getElementById('camera');
         const editImage = document.getElementById('editImage');
@@ -361,7 +361,7 @@
             editImage.classList.remove('hidden');
             saveProfileButton.classList.remove('hidden');
             cancelProfileButton.classList.remove('hidden');
-            //   namaP.classList.add('hidden');
+            //   namaP.classList.add('hidden'); 
             //   namaInput.classList.remove('hidden');
             //   emailP.classList.add('hidden');
             //   emailInput.classList.remove('hidden');
@@ -373,9 +373,9 @@
             // desaP.classList.add('hidden');
             desasP.classList.add('hidden');
             desaInput.classList.remove('hidden');
-            // dusunP.classList.add('hidden');
-            dusunsP.classList.add('hidden');
+            dusunP.classList.add('hidden');
             dusunInput.classList.remove('hidden');
+            // dusunsP.classList.add('hidden');
             //   nikP.classList.add('hidden');
             //   nikInput.classList.remove('hidden');
             teleponP.classList.add('hidden');
@@ -407,6 +407,7 @@
 
         
     </script>
+    
     </body>
 
     </html>
